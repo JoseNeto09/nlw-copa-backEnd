@@ -23,7 +23,14 @@ async function bootstrap(){
         return { count }
     })
 
-    await fastify.listen({ port : 3333, host: '0.0.0.0'})
+
+    fastify.post('/pools', async(request, reply) => {
+        const { title } = request.body
+
+        return reply.status(201).send({ title})
+    })
+
+await fastify.listen({ port : 3333, /*host: '0.0.0.0'*/})
 }
 
 bootstrap()
